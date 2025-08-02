@@ -1,7 +1,11 @@
 # Car-Brand-Detector
-Toy project on detecting car brands using public datasets. Start with simple models like CNN, to ViT models 
+Toy project on detecting car brands using public datasets. Start with simple models like CNN, ResNet, both training on scratch, and finetuning pretrained models.  
 
 ## Content 
-dataset: [CompCars Dataset](https://mmlab.ie.cuhk.edu.hk/datasets/comp_cars/) *not uploaded to github* 
+dataset: Stanford Cars through Huggingface Model 
 
 
+## Models 
+- Training from scratch CNN 
+- Training from scratch ResNet-16 
+- Finetuning a pretrained model 
