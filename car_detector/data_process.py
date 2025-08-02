@@ -4,7 +4,11 @@ from torchvision import transforms
 import numpy as np 
 
 
-def process_data(): 
+def process_data(reshape_size=224) -> dict[torch.Tensor]:
+    ''' 
+    Args: 
+    reshape_size: size the images are reshaped into 
+    ''' 
     ds = load_dataset("tanganke/stanford_cars") 
 
 
@@ -15,7 +19,7 @@ def process_data():
 
     # transform the images 
     image_transforms= transforms.Compose([
-    transforms.Resize((224, 224)),  # Resize to 224x224
+    transforms.Resize((reshape_size, reshape_size)),  # Resize 
     transforms.ToTensor(),           # Convert to tensor 
     ])
 
@@ -86,5 +90,6 @@ def process_data():
         "test_labels": test_labels
     })
 
-if __name__ == "__main__":
-    process_data() 
+
+# if __name__ == "__main__":
+#     process_data() 
