@@ -45,8 +45,10 @@ class CNN(nn.Module):
                 kernel_size=2, stride=2 
             )
         )
-
+        # 64x28x28 -> 128 
         self.fc1= nn.Linear(64*28*28,128)
+
+        # 128 -> num_classes so we can calculate negative log likelihood
         self.fc2= nn.Linear(128,num_classes)
     
     def forward(self,x):
