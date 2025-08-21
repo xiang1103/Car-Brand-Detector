@@ -1,2 +1,2 @@
 
-visualize_graph= False 
+visualize_graph= True 

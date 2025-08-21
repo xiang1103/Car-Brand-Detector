@@ -7,20 +7,20 @@ import matplotlib.pyplot as plt
 from settings import * 
 
 def train_loop(train_loader, model, epochs, device): 
+    model.train() 
+
     # establish loss function 
     loss_fn= nn.CrossEntropyLoss() 
-    optimizer= torch.optim.Adam(params=model.parameter())
+    optimizer= torch.optim.Adam(params=model.parameters(), lr=0.001)
     loss_items=list() 
     running_loss= 0.0 
     batches =0 
-    for epoch in range(epochs):
-        for images, label in tqdm(train_loader, desc=f"{epoch+1}/{epochs}", unit="batch"):
+    for epoch in trange(epochs):
+        for images, label in tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False):
             images=images.to(device)
             label= label.to(device) 
             # model prediction 
             output= model(images)
-
-            # retrive loss  
             loss= loss_fn(output,label)
             loss_items.append(loss.item())
             running_loss+=loss.item() 
@@ -33,7 +33,8 @@ def train_loop(train_loader, model, epochs, device):
 
         # compute average loss 
         avg_loss = round(running_loss / batches, 4) 
-        print(f"Epoch {epoch+1} | Avg Loss: {avg_loss}")
+        print(f"\nEpoch {epoch+1} | Avg Loss: {avg_loss}")
+
 
     torch.save(
         {
