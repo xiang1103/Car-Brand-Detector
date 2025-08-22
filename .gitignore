@@ -3,3 +3,7 @@
 *.ckpt
 *.pt
 *.pth
+run_cmd.sh 
+/car_detector/results/correct_samples
+/car_detector/results/incorrect_samples 
+ 
