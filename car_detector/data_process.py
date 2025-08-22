@@ -91,6 +91,21 @@ def process_data(reshape_size=224) -> dict[torch.Tensor]:
     })
 
 
+def denormalize(img:torch.Tensor, mean= [0.5,0.5,0.5], std=([0.5,0.5,0.5]) ) -> None:
+    ''' 
+    img shape: CxHxW i.e.: 3 x 224 x 224 
+    Denormalize the img from [-1,1] to [0,1]
+    '''
+    # define mean and std 
+    
+
+    # transform for element wise multiplication with the img tensor 
+    mean=torch.tensor(mean).view(3,1,1)
+    std= torch.tensor(std).view(3,1,1)
+
+    return img * std + mean
+
+
 # if __name__ == "__main__":
 #     process_data() 
 

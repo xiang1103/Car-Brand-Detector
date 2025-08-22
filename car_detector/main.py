@@ -9,6 +9,7 @@ import time
 import argparse 
 from validate import * 
 import torchvision.models as torch_models 
+from settings import * 
 
 '''
 Create arg parser 
@@ -17,10 +18,12 @@ parser = argparse.ArgumentParser(description="Car Brand Detector Parsers")
 parser.add_argument("--epoch", type=int, default=20)
 parser.add_argument("--model", type=str, default="CNN")
 parser.add_argument("--test_only", type=bool, default=False)
+parser.add_argument("--save_samples", type=bool, default=False)
+parser.add_argument("--model_dict", type=str, default=None)
 
 args=parser.parse_args() 
 
-print(f"Args\n{args}")
+print(f"{args}")
 
 
 config= {
@@ -32,6 +35,9 @@ config= {
     "device": "cuda" if torch.cuda.is_available() else "cpu"
 }
 
+if (args.save_samples):
+    save_samples= True 
+setting_model= args.model
 
 def main():
     # retrieve data 
@@ -66,8 +72,9 @@ def main():
     elif args.model=="vgg16":
         model= torch_models.vgg16(pretrained=True) 
         model.classifier[6]=nn.Linear(4096, train_num_classes)
-        print("-------Model Configuration-----")
-        print(model)
+    
+    print("-------Model Configuration-----")
+    print(model)
 
 
 
@@ -76,7 +83,6 @@ def main():
         ckpt= torch.load(f"/Users/xiang/Desktop/Car-Brand-Detector/car_detector/model_ckpt/20 Epoch ResNet.ckpt")
         model.load_state_dict(ckpt["model_state_dict"])
         run_test(model=model, test_loader=test_loader)
-        print("Hello")
         exit() 
 
     # training loop 
