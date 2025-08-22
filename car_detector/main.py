@@ -76,6 +76,7 @@ def main():
         ckpt= torch.load(f"/Users/xiang/Desktop/Car-Brand-Detector/car_detector/model_ckpt/20 Epoch ResNet.ckpt")
         model.load_state_dict(ckpt["model_state_dict"])
         run_test(model=model, test_loader=test_loader)
+        print("Hello")
         exit() 
 
     # training loop 
