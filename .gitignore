@@ -1,1 +1,5 @@
 /car_detector/model_ckpt
+/data 
+*.ckpt
+*.pt
+*.pth
