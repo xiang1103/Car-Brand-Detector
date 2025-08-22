@@ -26,11 +26,7 @@ def run_test(model, test_loader):
         total += label.size(0)
         correct += (predicted == label).sum().item()
 
-        print(f"Label min: {label.min()} | Label max: {label.max()}")
-        print(outputs.shape, predicted[:5], label[:5])
-
-        break 
-
+    
     accuracy = 100 * correct / total
     print(f"Correct: {correct}")
     print(f"Total: {total}")

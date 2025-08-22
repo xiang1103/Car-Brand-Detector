@@ -7,7 +7,8 @@ from model import *
 from train import train_loop
 import time 
 import argparse 
-from validate import *   
+from validate import * 
+import torchvision.models as torch_models 
 
 '''
 Create arg parser 
@@ -62,17 +63,23 @@ def main():
         # ResNet
         block= ResidualBlock
         model= ResNet(ResidualBlock=ResidualBlock, num_classes=train_num_classes)
+    elif args.model=="vgg16":
+        model= torch_models.vgg16(pretrained=True) 
+        model.classifier[6]=nn.Linear(4096, train_num_classes)
+        print("-------Model Configuration-----")
+        print(model)
 
 
 
     if (args.test_only):
         print("----Only testing----")
-        ckpt= torch.load(f"/Users/xiang/Desktop/Car-Brand-Detector/car_detector/model_ckpt/20 Epoch CNN.ckpt")
+        ckpt= torch.load(f"/Users/xiang/Desktop/Car-Brand-Detector/car_detector/model_ckpt/20 Epoch ResNet.ckpt")
         model.load_state_dict(ckpt["model_state_dict"])
         run_test(model=model, test_loader=test_loader)
         exit() 
 
     # training loop 
+    model= model.to(device)
     print("-----Training Started-----")
     train_start= time.time() 
     train_loop(train_loader=train_loader, model=model, epochs=config["epoch"], device=config["device"])

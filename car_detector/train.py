@@ -40,14 +40,14 @@ def train_loop(train_loader, model, epochs, device):
         {
             'model_state_dict': model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),
-        }, f"/Users/xiang/Desktop/Car-Brand-Detector/car_detector/model_ckpt/{epochs} Epoch CNN.ckpt"
+        }, f"/Users/xiang/Desktop/Car-Brand-Detector/car_detector/model_ckpt/{epochs} Epoch vgg16.ckpt"
     )
 
     print("----Model Saved----")
 
     if (visualize_graph):
         # visualize the loss graph 
-        visualize_loss(loss_items=loss_items, name=f"{epochs} Epoch CNN")
+        visualize_loss(loss_items=loss_items, name=f"{epochs} Epoch vgg16")
     
 
 
