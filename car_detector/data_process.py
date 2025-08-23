@@ -106,6 +106,7 @@ def denormalize(img:torch.Tensor, mean= [0.5,0.5,0.5], std=([0.5,0.5,0.5]) ) -> 
     return img * std + mean
 
 
+
 # if __name__ == "__main__":
 #     process_data() 
 

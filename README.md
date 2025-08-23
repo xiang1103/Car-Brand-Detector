@@ -18,6 +18,6 @@ The data is [Stanford Car dataset from HuggingFace](https://huggingface.co/datas
 ## Models 
 - [x] Training from scratch CNN   
 - [x] Training from scratch ResNet-16   
-- [] Visualize the heatmap of weights on image to see where the model is paying attention to  
-- [] Finetuning a pretrained model  
-- [] Test performance on adversial attacks 
+- [ ] Visualize the heatmap of weights on image to see where the model is paying attention to  
+- [x] Finetuning a pretrained model  
+- [ ] Test performance on adversial attacks on correctly predicted samples  

@@ -70,7 +70,7 @@ def main():
         block= ResidualBlock
         model= ResNet(ResidualBlock=ResidualBlock, num_classes=train_num_classes)
     elif args.model=="vgg16":
-        model= torch_models.vgg16(pretrained=True) 
+        model= torch_models.vgg16(weights=torch_models.VGG16_Weights.IMAGENET1K_V1)  
         model.classifier[6]=nn.Linear(4096, train_num_classes)
     
     print("-------Model Configuration-----")
