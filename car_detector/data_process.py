@@ -2,7 +2,7 @@ from datasets import load_dataset
 import torch 
 from torchvision import transforms 
 import numpy as np 
-
+from PIL import Image
 
 def process_data(reshape_size=224) -> dict[torch.Tensor]:
     ''' 
